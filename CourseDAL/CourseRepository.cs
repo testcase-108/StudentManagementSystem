@@ -3,6 +3,7 @@ using WebApplication7.model;
 using System.Linq;
 using WebApplication7.Data;
 using WebApplication7.DTO;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace WebApplication7.CourseDAL
 {
@@ -13,13 +14,26 @@ namespace WebApplication7.CourseDAL
         {
             _appDbContext = appDbContext;
         }
-        public List<Course> GetAll() => _appDbContext.courses.Select(c => new Course
+        public List<CourseDTO> GetAll() => _appDbContext.courses.Select(c => new CourseDTO
         {
             CourseId = c.CourseId,
             Title = c.Title
         }).ToList();
 
-        public Course GetById(int id) => _appDbContext.courses.Where(c => c.CourseId == id).First();
+        public CourseDTO GetById(int id)
+        {
+            var exists = _appDbContext.courses.Where(c => c.CourseId == id).First();
+            if(exists == null)
+            {
+                return null;
+            }
+
+            return new CourseDTO
+            {
+                CourseId = exists.CourseId,
+                Title = exists.Title
+            };
+        }
         public void Add(CoursetitleDTO courseDTO)
         {
             var course = new Course

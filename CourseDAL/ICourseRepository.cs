@@ -7,8 +7,8 @@ namespace WebApplication7.CourseDAL
 {
     public interface ICourseRepository
     {
-        List<Course> GetAll();
-        Course? GetById(int id);
+        List<CourseDTO> GetAll();
+        CourseDTO? GetById(int id);
         void Add(CoursetitleDTO course);
         void Update(CourseDTO course);
         void Delete(int id);

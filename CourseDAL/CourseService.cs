@@ -12,11 +12,11 @@ namespace WebApplication7.CourseDAL
         {
             _courseRepository = courseRepository;
         }
-        public IEnumerable<Course> GetAllCourses()
+        public IEnumerable<CourseDTO> GetAllCourses()
         {
             return _courseRepository.GetAll();
         }
-        public Course? GetCourseById(int id)
+        public CourseDTO? GetCourseById(int id)
         {
             return _courseRepository.GetById(id);
         }
@@ -26,7 +26,7 @@ namespace WebApplication7.CourseDAL
             _courseRepository.Add(course);
             _courseRepository.Save();
         }
-        public void UpdateCourse(Course course)
+        public void UpdateCourse(CourseDTO course)
         {
             var courseDTO = new CourseDTO
             {
