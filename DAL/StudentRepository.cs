@@ -49,12 +49,14 @@ namespace WebApplication7.DAL
         }
         public void Update(StuDTOWithId student)
         {
-            var newEntry = new Student
+            var existingStudent = _appDbContext.students.FirstOrDefault(s => s.StudentId == student.StudentId);
+            if(existingStudent != null)
             {
-                FirstName = student.FirstName,
-                LastName = student.LastName
-            };
-            _appDbContext.students.Update(newEntry);
+                existingStudent.FirstName = student.FirstName;
+                existingStudent.LastName = student.LastName;
+                _appDbContext.students.Update(existingStudent);
+                return;
+            }
         }
         public void Delete(int id)
         {

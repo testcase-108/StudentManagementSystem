@@ -28,11 +28,7 @@ namespace WebApplication7.CourseDAL
         }
         public void UpdateCourse(CourseDTO course)
         {
-            var courseDTO = new CourseDTO
-            {
-                Title = course.Title
-            };
-            _courseRepository.Update(courseDTO);
+            _courseRepository.Update(course);
             _courseRepository.Save();
         }
         public void DeleteCourse(int id)

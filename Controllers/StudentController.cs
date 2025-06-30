@@ -41,13 +41,8 @@ namespace WebApplication7.Controllers
         [HttpPost]
         public IActionResult AddStudent([FromBody] StuDTO studto)
         {
-            var student = new StuDTOWithId
-            {
-                FirstName = studto.FirstName,
-                LastName = studto.LastName
-            };
-            _studentService.AddStudent(student);
-            return Ok(student);
+            _studentService.AddStudent(studto);
+            return Ok(studto);
         }
 
         [HttpPut("{id}")]

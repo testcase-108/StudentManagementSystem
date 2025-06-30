@@ -45,11 +45,13 @@ namespace WebApplication7.CourseDAL
         }
         public void Update(CourseDTO courseDTO)
         {
-            var course = new Course
+            var course = _appDbContext.courses.FirstOrDefault(c => c.CourseId == courseDTO.CourseId);
+            if (course != null)
             {
-                Title = courseDTO.Title
-            };
-            _appDbContext.courses.Update(course);
+                course.Title = courseDTO.Title;
+                _appDbContext.courses.Update(course);
+                return ;
+            }
         }
         public void Delete(int id)
         {
