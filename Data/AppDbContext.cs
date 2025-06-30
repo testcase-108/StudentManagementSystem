@@ -30,12 +30,6 @@ namespace WebApplication7.Data
                 .WithMany(c => c.StudentCourses)
                 .HasForeignKey(sc => sc.CourseId)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<Student>()
-                .HasKey(s => s.StudentId);
-
-            modelBuilder.Entity<Course>()
-                .HasKey(c => c.CourseId);
         }
     }
 }

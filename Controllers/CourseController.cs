@@ -44,9 +44,7 @@ namespace WebApplication7.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateCourse(int id, [FromBody] CourseDTO coursedto)
         {
-            var course = _courseService.GetCourseById(id);
-
-            _courseService.UpdateCourse(course);
+            _courseService.UpdateCourse(coursedto);
             return NoContent();
         }
 
