@@ -18,4 +18,9 @@ namespace WebApplication7.DTO
         public int CourseId { get; set; }
         public string CourseTitle { get; set; } = string.Empty;
     }
+
+    public class EnrollmentRequest
+    {
+        public int[] CourseIds { get; set; }
+    }
 }

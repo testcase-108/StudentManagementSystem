@@ -7,7 +7,7 @@ namespace WebApplication7.model
         [Key]
         public int StudentId { get; set; }
         public required string FirstName { get; set; }
-        public  string? LastName { get; set; }
+        public string LastName { get; set; }
         public ICollection<StudentCourse> StudentCourses { get; set; } = new List<StudentCourse>();
     }
 }

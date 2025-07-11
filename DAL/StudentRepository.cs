@@ -9,7 +9,7 @@ namespace WebApplication7.DAL
     public class StudentRepository : IStudentRepository
     {
         private readonly AppDbContext _appDbContext;
-        
+
         public StudentRepository(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
@@ -49,14 +49,12 @@ namespace WebApplication7.DAL
         }
         public void Update(StuDTOWithId student)
         {
-            var existingStudent = _appDbContext.students.FirstOrDefault(s => s.StudentId == student.StudentId);
-            if(existingStudent != null)
+            var newEntry = new Student
             {
-                existingStudent.FirstName = student.FirstName;
-                existingStudent.LastName = student.LastName;
-                _appDbContext.students.Update(existingStudent);
-                return;
-            }
+                FirstName = student.FirstName,
+                LastName = student.LastName
+            };
+            _appDbContext.students.Update(newEntry);
         }
         public void Delete(int id)
         {

@@ -6,6 +6,7 @@ using WebApplication7.StuCourseDAL;
 using WebApplication7.CourseDAL;
 using WebApplication7.DAL;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication7.Controllers
 {
@@ -25,6 +26,7 @@ namespace WebApplication7.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult<IEnumerable<StuCourseDetailDTO>> GetAll()
         {
             var detailDtos = _service.GetAllStuCourses();
@@ -32,6 +34,7 @@ namespace WebApplication7.Controllers
         }
 
         [HttpGet("{studentId}/{courseId}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult<StuCourseDetailDTO> GetByIds(int studentId, int courseId)
         {
             var detailDto = _service.GetStuCourseByIds(studentId, courseId);
@@ -42,6 +45,7 @@ namespace WebApplication7.Controllers
         }
 
         [HttpPut("{studentId}/{courseId}")]
+        [Authorize(Roles = "Admin, User")]
         public IActionResult Update(int studentId, int courseId, [FromBody] StuCourseDTO dto)
         {
             var existing = _service.GetStuCourseByIds(studentId, courseId);
@@ -57,6 +61,7 @@ namespace WebApplication7.Controllers
         }
 
         [HttpDelete("{studentId}/{courseId}")]
+        [Authorize(Roles = "Admin, User")]
         public IActionResult Delete(int studentId, int courseId)
         {
             var existing = _service.GetStuCourseByIds(studentId, courseId);
